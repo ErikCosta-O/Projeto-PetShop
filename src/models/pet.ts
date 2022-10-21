@@ -1,4 +1,13 @@
-const data =[
+type PetType='dog'|'cat'|'fish'
+
+type Pet ={
+    type:PetType,
+    image:string,
+    name:string,
+    color:string,
+    sex:'Masculino'|'Feminino'
+}
+const data:Pet[]=[
     {
         type: 'dog',
         image: 'pastor-alemao.jpg',
@@ -119,3 +128,26 @@ const data =[
         sex: 'Masculino'
     },
 ]
+export const Pet={
+    getAll:()=>{
+        return data
+    },
+    getFromType:(type:PetType):Pet[]=>{
+        return data.filter(item =>{
+            if(item.type == type){
+                return true
+            }else{
+                return false
+            }
+        })
+    },
+    getFromName:(name:string):Pet[]=>{
+        return data.filter(item=>{
+            if(item.name.toLocaleLowerCase().indexOf(name.toLocaleLowerCase())> -1){
+                return true
+            }else{
+                return false
+            }
+        })
+    }
+}
